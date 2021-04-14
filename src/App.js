@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import shuffle from 'lodash.shuffle'
 
 // image for the pokemon
 // https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png
@@ -13,6 +14,32 @@ const pokemon = [
   { id: 133, name: 'eevee' },
 ];
 
+const doublePokemon = shuffle([...pokemon, ...pokemon])
+
 export default function App() {
-  return <div className="app"></div>;
+  return <div className="app">
+    <div className="cards">
+      {doublePokemon.map((pokemon, index) => (
+        <PokemonCard key={index} pokemon={pokemon}/>
+      ))}
+    </div>
+  </div>;
+}
+
+function PokemonCard({pokemon}){
+  return (
+    <div className="pokemon-card flipped">
+    <div className="inner">
+      <div className="front">
+        <img
+          src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+          alt={pokemon.name} width="100" />
+      </div>
+      <div className="back">
+        ?
+    </div>
+    </div>
+
+  </div>
+  )
 }
