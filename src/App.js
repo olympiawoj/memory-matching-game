@@ -18,7 +18,7 @@ const doublePokemon = shuffle([...pokemon, ...pokemon])
 
 export default function App() {
   const [opened, setOpened] = useState([]) // using index
-  const [matched, setMatched] = useState() // pokemon.id
+  const [matched, setMatched] = useState([]) // pokemon.id
   const [moves, setMoves] = useState(0)
 
   // check if there is a match
@@ -57,7 +57,7 @@ export default function App() {
 
           // do some logic to check if flipped
           if (opened.includes(index)) isFlipped = true;
-          if (matched.includes(pokemon.id)) isFlipped = true
+          if (matched && matched.includes(pokemon.id)) isFlipped = true
 
           return (
             <PokemonCard
